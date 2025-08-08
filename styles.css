@@ -39,28 +39,29 @@ body {
 .logo-box {
     background: #ffffff;
     color: #000000;
+    border: 2px solid #000000;
     padding: 4px 8px;
     font-weight: 700;
     font-size: 18px;
-    border: 2px solid #000000;
+    border-radius: 4px;
 }
 
 .nav-menu {
     display: flex;
     list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 20px;
     align-items: center;
-    gap: 40px;
 }
 
 .nav-menu a {
     text-decoration: none;
-    color: #026180;
-    font-weight: 600;
-    font-size: 16px;
-    transition: all 0.3s ease;
+    color: #000000;
+    font-weight: 500;
     padding: 8px 16px;
     border-radius: 6px;
-    cursor: pointer;
+    transition: all 0.3s ease;
 }
 
 .nav-menu a:hover {
@@ -72,18 +73,47 @@ body {
 
 .contact-btn {
     background: #026180;
-    color: #ffffff !important;
-    padding: 10px 20px;
+    color: #ffffff;
+    border: 2px solid #026180;
+    padding: 8px 16px;
     border-radius: 6px;
+    font-weight: 600;
     transition: all 0.3s ease;
     cursor: pointer;
+    display: inline-block;
+    text-decoration: none;
+    box-shadow: 0 2px 8px rgba(2, 97, 128, 0.3);
+    position: relative;
+    z-index: 10;
 }
 
 .contact-btn:hover {
     background: #f4bc53;
-    color: #000000 !important;
+    color: #000000;
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(244, 188, 83, 0.3);
+}
+
+.mobile-menu-checkbox {
+    display: none;
+}
+
+.mobile-menu-toggle {
+    display: none;
+    flex-direction: column;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    gap: 4px;
+}
+
+.mobile-menu-toggle span {
+    width: 25px;
+    height: 3px;
+    background: #000000;
+    border-radius: 2px;
+    transition: all 0.3s ease;
 }
 
 .get-started-btn {
@@ -751,9 +781,23 @@ body {
 /* Workflows Section */
 .workflows {
     padding: 120px 0;
-    background: linear-gradient(rgba(2, 97, 128, 0.85), rgba(2, 97, 128, 0.85)), url('images/Prime Live June Photos 20.jpg') center/cover;
+    background: #026180;
+    background: linear-gradient(rgba(2, 97, 128, 0.85), rgba(2, 97, 128, 0.85)), url('images/Prime Live June Photos 20.jpg') center/cover no-repeat;
     color: #ffffff;
     position: relative;
+    background-attachment: fixed;
+}
+
+.workflows::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #026180;
+    background: linear-gradient(rgba(2, 97, 128, 0.85), rgba(2, 97, 128, 0.85)), url('images/Prime Live June Photos 20.jpg') center/cover no-repeat;
+    z-index: -1;
 }
 
 .workflows-container {
@@ -761,6 +805,8 @@ body {
     margin: 0 auto;
     padding: 0 24px;
     text-align: center;
+    position: relative;
+    z-index: 2;
 }
 
 .workflows .section-title {
@@ -1159,17 +1205,61 @@ body {
     }
     
     .logo-box {
-        padding: 3px 6px;
-        font-size: 16px;
+        padding: 2px 4px;
+        font-size: 14px;
     }
     
     .nav-menu {
-        gap: 15px;
+        display: none;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        right: 0;
+        background: #ffffff;
+        flex-direction: column;
+        gap: 0;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+    }
+    
+    .mobile-menu-checkbox:checked ~ .nav-menu {
+        display: flex;
     }
     
     .nav-menu a {
-        font-size: 14px;
-        padding: 6px 12px;
+        font-size: 16px;
+        padding: 15px 20px;
+        width: 100%;
+        text-align: center;
+        border-bottom: 1px solid #f0f0f0;
+        color: #000000;
+    }
+    
+    .nav-menu a:hover {
+        background: #f4bc53;
+        color: #000000;
+    }
+    
+    .contact-btn {
+        font-size: 16px;
+        padding: 15px 20px;
+        width: 100%;
+        text-align: center;
+        color: #ffffff;
+        background: #026180;
+        border: 2px solid #026180;
+        box-shadow: 0 2px 8px rgba(2, 97, 128, 0.3);
+        position: relative;
+        z-index: 10;
+    }
+    
+    .contact-btn:hover {
+        background: #f4bc53;
+        color: #000000;
+    }
+    
+    .mobile-menu-toggle {
+        display: flex;
     }
     
     .hero {
@@ -1200,7 +1290,14 @@ body {
     
     .video-frame {
         width: 100%;
-        height: 200px;
+        height: 250px;
+        min-height: 250px;
+    }
+    
+    .video-container {
+        width: 100%;
+        max-width: 500px;
+        margin: 0 auto;
     }
     
     .section-title {
@@ -1271,6 +1368,7 @@ body {
     
     .workflow-item {
         padding: 25px;
+        background: rgba(255, 255, 255, 0.15);
     }
     
     .mastermind-features {
@@ -1285,6 +1383,35 @@ body {
     
     .benefit {
         padding: 25px;
+        text-align: center;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+    
+    .benefit-number {
+        align-self: center;
+        margin-bottom: 10px;
+    }
+    
+    .benefit-icon {
+        align-self: center;
+        margin-bottom: 10px;
+    }
+    
+    .benefit h3 {
+        font-size: 18px;
+        margin-bottom: 10px;
+        width: 100%;
+        text-align: center;
+    }
+    
+    .benefit p {
+        font-size: 14px;
+        line-height: 1.5;
+        width: 100%;
+        margin: 0;
+        text-align: center;
     }
     
     .team-member {
@@ -1295,10 +1422,12 @@ body {
     }
     
     .member-photo {
-        width: 120px;
-        height: 120px;
-        margin: 0 auto;
+        width: 100px;
+        height: 100px;
         align-self: center;
+        object-fit: contain;
+        background: #f8f9fa;
+        border-radius: 12px;
     }
     
     .member-info h3 {
@@ -1339,6 +1468,7 @@ body {
 @media (max-width: 480px) {
     .nav-container {
         padding: 0 12px;
+        height: 80px;
     }
     
     .logo-box {
@@ -1348,10 +1478,55 @@ body {
     
     .nav-menu {
         display: none;
+        position: absolute;
+        top: 80px;
+        left: 0;
+        right: 0;
+        background: #ffffff;
+        flex-direction: column;
+        gap: 0;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+    }
+    
+    .nav-menu.active {
+        display: flex;
+    }
+    
+    .nav-menu a {
+        font-size: 16px;
+        padding: 15px 20px;
+        width: 100%;
+        text-align: center;
+        border-bottom: 1px solid #f0f0f0;
+        color: #333333;
+    }
+    
+    .nav-menu a:hover {
+        background: #f4bc53;
+        color: #000000;
+    }
+    
+    .contact-btn {
+        font-size: 16px;
+        padding: 15px 20px;
+        width: 100%;
+        text-align: center;
+        color: #ffffff;
+        background: #026180;
+        border: 2px solid #026180;
+        box-shadow: 0 2px 8px rgba(2, 97, 128, 0.3);
+        position: relative;
+        z-index: 10;
+    }
+    
+    .contact-btn:hover {
+        background: #f4bc53;
+        color: #000000;
     }
     
     .hero {
-        padding-top: 60px;
+        padding-top: 80px;
         padding-bottom: 40px;
     }
     
@@ -1367,6 +1542,12 @@ body {
     
     .hero-subtitle {
         font-size: 14px;
+    }
+    
+    .video-frame {
+        width: 100%;
+        height: 200px;
+        min-height: 200px;
     }
     
     .section-title {
@@ -1393,6 +1574,44 @@ body {
         padding: 20px;
     }
     
+    .workflow-item {
+        padding: 20px;
+        background: rgba(255, 255, 255, 0.2);
+    }
+    
+    .benefit {
+        padding: 20px;
+        text-align: center;
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+    }
+    
+    .benefit-number {
+        align-self: center;
+        margin-bottom: 8px;
+    }
+    
+    .benefit-icon {
+        align-self: center;
+        margin-bottom: 8px;
+    }
+    
+    .benefit h3 {
+        font-size: 16px;
+        margin-bottom: 8px;
+        width: 100%;
+        text-align: center;
+    }
+    
+    .benefit p {
+        font-size: 13px;
+        line-height: 1.4;
+        width: 100%;
+        margin: 0;
+        text-align: center;
+    }
+    
     .team-member {
         padding: 20px;
         gap: 15px;
@@ -1402,6 +1621,9 @@ body {
         width: 100px;
         height: 100px;
         align-self: center;
+        object-fit: contain;
+        background: #f8f9fa;
+        border-radius: 12px;
     }
     
     .member-info h3 {
@@ -1424,6 +1646,9 @@ body {
         width: 80px;
         height: 80px;
         align-self: center;
+        object-fit: contain;
+        background: #f8f9fa;
+        border-radius: 12px;
     }
     
     .member-info h3 {
@@ -1472,4 +1697,57 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
     background: #f4bc53;
+} 
+
+@media (max-width: 768px) {
+    .workflows {
+        padding: 80px 0;
+        background: linear-gradient(rgba(2, 97, 128, 0.9), rgba(2, 97, 128, 0.9)), url('images/Prime Live June Photos 20.jpg') center/cover no-repeat;
+        background-attachment: scroll;
+    }
+    
+    .workflows::before {
+        background: linear-gradient(rgba(2, 97, 128, 0.9), rgba(2, 97, 128, 0.9)), url('images/Prime Live June Photos 20.jpg') center/cover no-repeat;
+    }
+    
+    .workflows-content {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .workflow-item {
+        padding: 25px;
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(10px);
+    }
+}
+
+@media (max-width: 480px) {
+    .workflows {
+        padding: 60px 0;
+        background: linear-gradient(rgba(2, 97, 128, 0.95), rgba(2, 97, 128, 0.95)), url('images/Prime Live June Photos 20.jpg') center/cover no-repeat;
+        background-attachment: scroll;
+    }
+    
+    .workflows::before {
+        background: linear-gradient(rgba(2, 97, 128, 0.95), rgba(2, 97, 128, 0.95)), url('images/Prime Live June Photos 20.jpg') center/cover no-repeat;
+    }
+    
+    .workflow-item {
+        padding: 20px;
+        background: rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(10px);
+    }
+} 
+
+.mobile-menu-toggle.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.mobile-menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.mobile-menu-toggle.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -6px);
 } 
